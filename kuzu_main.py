@@ -13,6 +13,7 @@ from torchvision import datasets, transforms
 from kuzu import NetLin, NetFull, NetConv
     
 def train(args, model, device, train_loader, optimizer, epoch):
+    print("model:",model)
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
         data, target = data.to(device), target.to(device)
@@ -86,14 +87,14 @@ def main():
     if args.net == 'lin':
         net = NetLin().to(device)
     elif args.net == 'full':
+        print("starting with full network!")
         net = NetFull().to(device)
     else:
+        print("doesnt get here")
         net = NetConv().to(device)
-
     if list(net.parameters()):
         # use SGD optimizer
         optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=args.mom)
-
         # training and testing loop
         for epoch in range(1, args.epochs + 1):
             train(args, net, device, train_loader, optimizer, epoch)

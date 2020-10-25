@@ -13,7 +13,7 @@ from spiral import PolarNet, RawNet, graph_hidden
 def train(net, train_loader, optimizer):
     total=0
     correct=0
-    for batch_id, (data,target) in enumerate(train_loader):
+    for _, (data,target) in enumerate(train_loader):
         optimizer.zero_grad()    # zero the gradients
         output = net(data)       # apply network
         loss = F.binary_cross_entropy(output,target)
@@ -89,8 +89,7 @@ if list(net.parameters()):
         accuracy = train(net, train_loader, optimizer)
         if epoch % 100 == 0 and accuracy == 100:
             break
-
-# graph hidden units
+#graph hidden units
 for layer in [1,2]:
     if layer == 1 or args.net != 'polar':
         for node in range(args.hid):
