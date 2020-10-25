@@ -21,7 +21,7 @@ class PolarNet(torch.nn.Module):
         out[:,1] = torch.atan2(y,x)
         #here we start the forward pass
         self.active1 = torch.tanh(self.feed(out))
-        self.active2 = torch.tanh(self.hid(self.active1))
+        self.active2 = self.hid(self.active1)
         self.hidlayer = [self.active1]
         return F.sigmoid(self.active2)
 

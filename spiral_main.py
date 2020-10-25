@@ -67,7 +67,7 @@ full_input  = data[:,0:num_input]
 full_target = data[:,num_input:num_input+1]
 
 train_dataset = torch.utils.data.TensorDataset(full_input,full_target)
-train_loader  = torch.utils.data.DataLoader(train_dataset,batch_size=97)
+train_loader  = torch.utils.data.DataLoader(train_dataset,batch_size=97) #batch size =97
 
 # choose network architecture
 if args.net == 'polar':
