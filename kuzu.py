@@ -63,12 +63,10 @@ class NetConv(nn.Module):
         #self.fc2 = nn.Linear(10, 10)
 
     def forward(self, x):
-        #print("x:",x.size())
         x = F.max_pool2d(F.relu(self.conv1(x)), 2)
-        #print("after relu1:",x.size())
         x = F.max_pool2d(F.relu(self.conv2(x)), 2)
-        #print("after relu2:",x.size())
         x = x.view(-1, 480) #flatten the image 
         #x = F.relu(self.fc1(x))
+        #x = self.fc2(x)
         x = self.fc1(x)
         return F.log_softmax(x,dim=1)
